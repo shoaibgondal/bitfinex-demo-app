@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug">
+
+    <Properties>
+        <property name="LOG_FILE_NAME">${bundle:application:logging.file}</property>
+    </Properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout
+                    pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n" />
+        </Console>
+
+        <File name="File-Appender" fileName="${LOG_FILE_NAME}.log" >
+            <PatternLayout>
+                <pattern>
+                    [%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n
+                </pattern>
+            </PatternLayout>
+        </File>
+        <!--<Async name="AsyncAppender" bufferSize="20">
+            <AppenderRef ref="File-Appender"/>
+        </Async>-->
+    </Appenders>
+
+    <Loggers>
+        <!-- LOG everything at INFO level -->
+        <Root level="info">
+            <AppenderRef ref="Console" />
+            <AppenderRef ref="File-Appender" />
+        </Root>
+
+        <Logger name="com.example.bitfinex.demo" level="debug"></Logger>
+
+    </Loggers>
+
+</Configuration>
